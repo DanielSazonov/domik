@@ -28,9 +28,8 @@ export const Mortgage = () => {
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Строительство в ипотеку
           </h2>
-          <p className="text-xl mb-2">семейная, сельская</p>
-          <p className="text-xl mb-4">с ЭСКРОУ счётом</p>
-          <p className="text-4xl md:text-5xl font-bold">от 3-6%</p>
+          <p className="text-4xl md:text-5xl font-bold mb-6">от 2-3%</p>
+          <p className="text-xl opacity-90">Подробности уточняйте по телефону</p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6 mb-8">
@@ -48,14 +47,6 @@ export const Mortgage = () => {
           })}
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button size="lg" variant="secondary">
-            Читать подробнее
-          </Button>
-          <Button size="lg" variant="outline" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary">
-            Оставить заявку на ипотеку
-          </Button>
-        </div>
       </div>
     </section>
   );

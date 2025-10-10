@@ -92,9 +92,6 @@ export const About = () => {
           ))}
         </div>
 
-        <div className="text-center">
-          <Button size="lg">Подробнее о нас</Button>
-        </div>
       </div>
     </section>
   );

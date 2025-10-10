@@ -17,7 +17,7 @@ const projects = [
     kitchen: "22,5 м²",
     bedrooms: 3,
     location: "г. Саратов",
-    price: "6 128 000 руб.",
+    price: "12 256 000 руб.",
   },
   {
     id: 2,
@@ -29,7 +29,7 @@ const projects = [
     kitchen: "26,9 м²",
     bedrooms: 3,
     location: "с. Шумейка, Энгельсский район",
-    price: "6 900 000 руб.",
+    price: "13 800 000 руб.",
   },
   {
     id: 3,
@@ -41,7 +41,7 @@ const projects = [
     kitchen: "18,6 м²",
     bedrooms: 2,
     location: "г. Саратов, Заводской район",
-    price: "5 525 000 руб.",
+    price: "11 050 000 руб.",
   },
   {
     id: 4,
@@ -53,7 +53,7 @@ const projects = [
     kitchen: "26,9 м²",
     bedrooms: 3,
     location: "г. Саратов, Кумысная поляна",
-    price: "6 836 500 руб.",
+    price: "13 673 000 руб.",
   },
   {
     id: 5,
@@ -65,7 +65,7 @@ const projects = [
     kitchen: "20,7 м²",
     bedrooms: 2,
     location: "г. Саратов, Кумысная поляна",
-    price: "3 355 000 руб.",
+    price: "6 710 000 руб.",
   },
 ];
 
@@ -75,9 +75,8 @@ export const Projects = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Дома, построенные с любовью и заботой компанией
+            Проекты
           </h2>
-          <Button variant="outline">все проекты</Button>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -124,10 +123,6 @@ export const Projects = () => {
                     {project.price}
                   </p>
                 </div>
-
-                <Button variant="outline" className="w-full mt-4">
-                  Подробнее о проекте
-                </Button>
               </CardContent>
             </Card>
           ))}

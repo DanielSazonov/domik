@@ -1,6 +1,10 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
-import construction1 from "@/assets/construction1.jpg";
+import stageFoundation from "@/assets/stage-foundation.jpg";
+import stageAssembly from "@/assets/stage-assembly.jpg";
+import stageRoof from "@/assets/stage-roof.jpg";
+import stageWindows from "@/assets/stage-windows.jpg";
+import stageFinishing from "@/assets/stage-finishing.jpg";
 import { Home, Hammer, Building, DoorOpen, Paintbrush } from "lucide-react";
 
 const stages = [
@@ -8,36 +12,41 @@ const stages = [
     id: "foundation",
     title: "Возведение фундамента",
     icon: Home,
+    image: stageFoundation,
     description: "Монтаж фундамента и обвязочного бруса. Дома из СИП панелей легкие, поэтому чаще всего возводятся на свайных фундаментах, что значительно ускоряет процесс строительства.",
-    duration: "от 1-3 дней",
+    duration: "от 3-7 дней",
   },
   {
     id: "assembly",
     title: "Сборка дома",
     icon: Hammer,
+    image: stageAssembly,
     description: "Монтаж стен, перекрытий и межкомнатных перегородок",
-    duration: "от 15 дней",
+    duration: "от 20-30 дней",
   },
   {
     id: "roof",
     title: "Монтаж крыши",
     icon: Building,
+    image: stageRoof,
     description: "Установка кровельной системы",
-    duration: "от 5 дней",
+    duration: "от 7-14 дней",
   },
   {
     id: "windows",
     title: "Установка окон и дверей",
     icon: DoorOpen,
+    image: stageWindows,
     description: "с соблюдением норм по ГОСТу",
-    duration: "1 день",
+    duration: "от 2-3 дней",
   },
   {
     id: "finishing",
     title: "Отделочные работы",
     icon: Paintbrush,
+    image: stageFinishing,
     description: "Внутренняя и внешняя отделка",
-    duration: "от 10 дней",
+    duration: "от 15-25 дней",
   },
 ];
 
@@ -72,7 +81,7 @@ export const BuildingStages = () => {
                 <CardContent className="pt-6">
                   <div className="grid md:grid-cols-2 gap-8">
                     <div className="relative aspect-video rounded-lg overflow-hidden">
-                      <img src={construction1} alt={stage.title} className="w-full h-full object-cover" />
+                      <img src={stage.image} alt={stage.title} className="w-full h-full object-cover" />
                     </div>
                     <div className="flex flex-col justify-center">
                       <h3 className="text-2xl font-bold mb-4">{stage.title}</h3>

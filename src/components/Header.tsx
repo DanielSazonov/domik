@@ -8,8 +8,8 @@ export const Header = () => {
 
   const menuItems = [
     { label: "О компании", href: "#about" },
-    { label: "Построенные дома", href: "#projects" },
-    { label: "Проекты", href: "#catalog" },
+    { label: "Проекты", href: "#projects" },
+    { label: "Построение дома", href: "#stages" },
     { label: "Технологии SIP", href: "#technology" },
     { label: "Кредитование", href: "#mortgage" },
     { label: "Отзывы", href: "#reviews" },
@@ -43,9 +43,6 @@ export const Header = () => {
               <Phone className="h-4 w-4" />
               <span>8 (917) 208-74-71</span>
             </a>
-            <Button variant="default" size="sm" className="hidden md:inline-flex">
-              Оставить заявку
-            </Button>
             <button
               className="md:hidden"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -71,9 +68,6 @@ export const Header = () => {
               <Phone className="h-4 w-4" />
               <span>8 (917) 208-74-71</span>
             </a>
-            <Button variant="default" size="sm" className="w-full">
-              Оставить заявку
-            </Button>
           </div>
         )}
       </div>

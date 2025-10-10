@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-house.jpg";
-import { ArrowRight, CheckCircle } from "lucide-react";
+import { CheckCircle } from "lucide-react";
 
 export const Hero = () => {
   return (
@@ -34,13 +34,9 @@ export const Hero = () => {
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Button size="lg" variant="default" className="group">
-              Рассчитать стоимость
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Button>
-            <Button size="lg" variant="secondary">
-              Посмотреть проекты
+          <div className="flex justify-start">
+            <Button size="lg" variant="secondary" asChild>
+              <a href="#projects">Посмотреть проекты</a>
             </Button>
           </div>
         </div>

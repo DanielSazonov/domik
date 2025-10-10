@@ -63,9 +63,6 @@ export const Technology = () => {
           </div>
         </div>
 
-        <div className="text-center">
-          <Button size="lg">Подробнее о технологии</Button>
-        </div>
       </div>
     </section>
   );
