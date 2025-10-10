@@ -5,6 +5,7 @@ import project3 from "@/assets/project3.jpg";
 import project4 from "@/assets/project4.jpg";
 import project5 from "@/assets/project5.jpg";
 import { Button } from "@/components/ui/button";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const projects = [
   {
@@ -70,10 +71,17 @@ const projects = [
 ];
 
 export const Projects = () => {
+  const { elementRef, isVisible } = useScrollAnimation();
+  
   return (
     <section id="projects" className="py-16 md:py-24 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+        <div 
+          ref={elementRef}
+          className={`text-center mb-12 transition-all duration-1000 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+        >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Проекты
           </h2>

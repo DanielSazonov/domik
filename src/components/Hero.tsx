@@ -1,8 +1,11 @@
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-house.jpg";
 import { CheckCircle } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 export const Hero = () => {
+  const { elementRef, isVisible } = useScrollAnimation();
+  
   return (
     <section className="relative min-h-[600px] md:min-h-[700px] flex items-center">
       <div
@@ -15,7 +18,12 @@ export const Hero = () => {
       />
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-3xl">
+        <div 
+          ref={elementRef}
+          className={`max-w-3xl transition-all duration-1000 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+        >
           <h1 className="text-4xl md:text-6xl font-bold text-primary-foreground mb-6">
             Теплосберегающие дома из SIP-панелей
           </h1>

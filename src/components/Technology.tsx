@@ -2,6 +2,7 @@ import { Shield, Zap, Home, Leaf, Flame, Bug } from "lucide-react";
 import sipPanel from "@/assets/sip-panel.jpg";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const features = [
   {
@@ -31,10 +32,17 @@ const features = [
 ];
 
 export const Technology = () => {
+  const { elementRef, isVisible } = useScrollAnimation();
+  
   return (
     <section id="technology" className="py-16 md:py-24 bg-secondary">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+        <div 
+          ref={elementRef}
+          className={`text-center mb-12 transition-all duration-1000 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+        >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Технологии SIP</h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             Современные канадские сэндвич-панели представляют собой две плиты ОСП-3 толщиной до 12мм 

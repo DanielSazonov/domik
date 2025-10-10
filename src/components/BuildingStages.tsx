@@ -1,5 +1,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent } from "@/components/ui/card";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import stageFoundation from "@/assets/stage-foundation.jpg";
 import stageAssembly from "@/assets/stage-assembly.jpg";
 import stageRoof from "@/assets/stage-roof.jpg";
@@ -51,10 +52,17 @@ const stages = [
 ];
 
 export const BuildingStages = () => {
+  const { elementRef, isVisible } = useScrollAnimation();
+  
   return (
     <section id="stages" className="py-16 md:py-24 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+        <div 
+          ref={elementRef}
+          className={`text-center mb-12 transition-all duration-1000 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+        >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Этапы строительства</h2>
           <p className="text-lg text-muted-foreground">
             Строительство домов из SIP панелей производится в кратчайшие сроки (от 5 дней). 

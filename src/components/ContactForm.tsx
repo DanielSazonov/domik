@@ -4,9 +4,11 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 export const ContactForm = () => {
   const { toast } = useToast();
+  const { elementRef, isVisible } = useScrollAnimation();
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -25,7 +27,12 @@ export const ContactForm = () => {
   return (
     <section id="contacts" className="py-16 md:py-24 bg-secondary">
       <div className="container mx-auto px-4">
-        <div className="max-w-2xl mx-auto">
+        <div 
+          ref={elementRef}
+          className={`max-w-2xl mx-auto transition-all duration-1000 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+          }`}
+        >
           <Card>
             <CardHeader>
               <CardTitle className="text-2xl md:text-3xl text-center">
