@@ -46,7 +46,7 @@ const projects = [
   },
   {
     id: 4,
-    title: "Одноэтажный дом 10х11 м. с гаражом",
+    title: "Двухэтажный дом 10х11 м. с гаражом",
     image: project3,
     dimensions: "10 х 11 м",
     area: "189 м²",
@@ -58,7 +58,7 @@ const projects = [
   },
   {
     id: 5,
-    title: "Одноэтажный дом 7 х 9 м.",
+    title: "Двухэтажный дом 7 х 9 м.",
     image: project4,
     dimensions: "7 х 9 м",
     area: "77 м²",

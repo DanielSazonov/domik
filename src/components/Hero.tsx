@@ -7,7 +7,7 @@ export const Hero = () => {
   const { elementRef, isVisible } = useScrollAnimation();
   
   return (
-    <section className="relative min-h-[600px] md:min-h-[700px] flex items-center">
+    <section className="relative min-h-screen flex items-center">
       <div
         className="absolute inset-0 z-0"
         style={{
