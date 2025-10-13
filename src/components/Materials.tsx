@@ -2,12 +2,18 @@ import { Layers, Wrench, TreePine, Droplets, Wind, Shield } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import materialSip from "@/assets/material-sip.jpg";
+import materialFoundation from "@/assets/material-foundation.jpg";
+import materialWood from "@/assets/material-wood.jpg";
+import materialRoofing from "@/assets/material-roofing.jpg";
+import materialFinishing from "@/assets/material-finishing.jpg";
 
 const materials = [
   {
-    id: "sip",
-    name: "SIP-панели",
+    id: "materials",
+    name: "Материалы",
     icon: Layers,
+    image: materialSip,
     description: "Структурно-изолированные панели - основной материал для строительства",
     features: [
       "ОСП-3 толщиной до 12мм",
@@ -25,6 +31,7 @@ const materials = [
     id: "foundation",
     name: "Фундамент",
     icon: Shield,
+    image: materialFoundation,
     description: "Надежное основание для вашего дома",
     features: [
       "Свайно-винтовой фундамент",
@@ -42,6 +49,7 @@ const materials = [
     id: "wood",
     name: "Древесина",
     icon: TreePine,
+    image: materialWood,
     description: "Натуральные материалы высокого качества",
     features: [
       "Обвязочный брус",
@@ -59,6 +67,7 @@ const materials = [
     id: "roofing",
     name: "Кровельные материалы",
     icon: Shield,
+    image: materialRoofing,
     description: "Защита вашего дома от непогоды",
     features: [
       "Металлочерепица",
@@ -76,6 +85,7 @@ const materials = [
     id: "finishing",
     name: "Отделочные материалы",
     icon: Wrench,
+    image: materialFinishing,
     description: "Качественная отделка внутри и снаружи",
     features: [
       "Фасадные панели",
@@ -109,7 +119,7 @@ export const Materials = () => {
           </p>
         </div>
 
-        <Tabs defaultValue="sip" className="w-full">
+        <Tabs defaultValue="materials" className="w-full">
           <TabsList className="grid w-full grid-cols-2 md:grid-cols-5 mb-8">
             {materials.map((material) => {
               const Icon = material.icon;
@@ -131,6 +141,11 @@ export const Materials = () => {
               <Card>
                 <CardContent className="pt-6">
                   <div className="grid md:grid-cols-2 gap-8">
+                    <div 
+                      className="relative aspect-video rounded-lg overflow-hidden bg-cover bg-center"
+                      style={{ backgroundImage: `url(${material.image})` }}
+                    />
+
                     <div>
                       <h3 className="text-2xl font-bold mb-4">{material.name}</h3>
                       <p className="text-muted-foreground mb-6">{material.description}</p>
