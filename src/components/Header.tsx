@@ -10,7 +10,7 @@ export const Header = () => {
     { label: "О компании", href: "#about" },
     { label: "Проекты", href: "#projects" },
     { label: "Построение дома", href: "#stages" },
-    { label: "Технологии SIP", href: "#technology" },
+    { label: "Материалы", href: "#materials" },
     { label: "Кредитование", href: "#mortgage" },
     { label: "Отзывы", href: "#reviews" },
     { label: "Контакты", href: "#contacts" },

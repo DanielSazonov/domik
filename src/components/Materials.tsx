@@ -1,4 +1,4 @@
-import { Layers, Wrench, TreePine, Droplets, Wind, Shield } from "lucide-react";
+import { Layers, Wrench, TreePine, Droplets, Wind, Shield, Home } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -10,8 +10,8 @@ import materialFinishing from "@/assets/material-finishing.jpg";
 
 const materials = [
   {
-    id: "materials",
-    name: "Материалы",
+    id: "sip",
+    name: "SIP-панели",
     icon: Layers,
     image: materialSip,
     description: "Структурно-изолированные панели - основной материал для строительства",
@@ -66,7 +66,7 @@ const materials = [
   {
     id: "roofing",
     name: "Кровельные материалы",
-    icon: Shield,
+    icon: Home,
     image: materialRoofing,
     description: "Защита вашего дома от непогоды",
     features: [
@@ -119,7 +119,7 @@ export const Materials = () => {
           </p>
         </div>
 
-        <Tabs defaultValue="materials" className="w-full">
+        <Tabs defaultValue="sip" className="w-full">
           <TabsList className="grid w-full grid-cols-2 md:grid-cols-5 mb-8">
             {materials.map((material) => {
               const Icon = material.icon;
@@ -146,7 +146,7 @@ export const Materials = () => {
                       style={{ backgroundImage: `url(${material.image})` }}
                     />
 
-                    <div>
+                    <div className="flex flex-col">
                       <h3 className="text-2xl font-bold mb-4">{material.name}</h3>
                       <p className="text-muted-foreground mb-6">{material.description}</p>
                       
@@ -159,9 +159,7 @@ export const Materials = () => {
                           </li>
                         ))}
                       </ul>
-                    </div>
 
-                    <div>
                       <h4 className="font-bold mb-4">Преимущества:</h4>
                       <div className="space-y-4">
                         {material.benefits.map((benefit, index) => {
