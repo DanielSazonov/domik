@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirecting…</title>
+    <meta name="robots" content="noindex" />
+    <meta http-equiv="refresh" content="0; url=/domik/#/" />
+    <script>
+      (function() {
+        var repo = '/domik/';
+        var path = location.pathname;
+        try {
+          // Ensure we only strip the repo prefix
+          if (path.indexOf(repo) === 0) {
+            path = path.substring(repo.length);
+          } else {
+            path = path.replace(/^\//, '');
+          }
+        } catch (e) {}
+        var redirect = repo + '#' + (path || '/');
+        var query = location.search || '';
+        var hash = location.hash || '';
+        // Prefer JS redirect to preserve full path/query/hash
+        location.replace(redirect + query + hash);
+      })();
+    </script>
+  </head>
+  <body>
+    Redirecting…
+  </body>
+</html>
