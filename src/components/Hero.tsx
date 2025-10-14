@@ -44,7 +44,7 @@ export const Hero = () => {
 
           <div className="flex justify-start">
             <Button size="lg" variant="secondary" asChild>
-              <a href="#projects">Посмотреть проекты</a>
+              <a href="#projects" onClick={(e) => { e.preventDefault(); document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth', block: 'start' }); if (window.location.hash && window.location.hash !== '#/') { window.location.hash = '#/'; } }}>Посмотреть проекты</a>
             </Button>
           </div>
         </div>

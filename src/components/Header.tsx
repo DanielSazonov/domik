@@ -16,6 +16,22 @@ export const Header = () => {
     { label: "Контакты", href: "#contacts" },
   ];
 
+  const handleAnchorClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    targetId: string
+  ) => {
+    e.preventDefault();
+    const el = document.getElementById(targetId);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    // Keep HashRouter route at root to avoid 404
+    if (window.location.hash && window.location.hash !== "#/") {
+      window.location.hash = "#/";
+    }
+    setIsMenuOpen(false);
+  };
+
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4">
@@ -31,6 +47,7 @@ export const Header = () => {
               <a
                 key={item.label}
                 href={item.href}
+                onClick={(e) => handleAnchorClick(e, item.href.substring(1))}
                 className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
               >
                 {item.label}
@@ -59,7 +76,7 @@ export const Header = () => {
                 key={item.label}
                 href={item.href}
                 className="block py-2 text-sm font-medium text-foreground/80 hover:text-foreground"
-                onClick={() => setIsMenuOpen(false)}
+                onClick={(e) => handleAnchorClick(e, item.href.substring(1))}
               >
                 {item.label}
               </a>
