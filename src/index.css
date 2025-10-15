@@ -2,9 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Smooth scrolling */
+/* Smooth scrolling with performance optimization */
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
@@ -87,9 +93,6 @@ All colors MUST be HSL.
 @layer base {
   * {
     @apply border-border;
-    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 200ms;
   }
 
   body {

@@ -71,13 +71,13 @@ export const BuildingStages = () => {
         </div>
 
         <Tabs defaultValue="foundation" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 md:grid-cols-5 mb-8">
+          <TabsList className="flex flex-wrap md:grid md:grid-cols-5 mb-8 h-auto gap-2 p-2">
             {stages.map((stage) => {
               const Icon = stage.icon;
               return (
-                <TabsTrigger key={stage.id} value={stage.id} className="flex flex-col items-center gap-2 py-4">
-                  <Icon className="h-6 w-6" />
-                  <span className="text-xs md:text-sm">{stage.title}</span>
+                <TabsTrigger key={stage.id} value={stage.id} className="flex flex-col items-center gap-2 py-3 px-4 min-w-[140px] flex-1 md:flex-initial">
+                  <Icon className="h-5 w-5 md:h-6 md:w-6" />
+                  <span className="text-xs md:text-sm text-center leading-tight">{stage.title}</span>
                 </TabsTrigger>
               );
             })}
