@@ -5,24 +5,43 @@ export const useScrollAnimation = (threshold = 0.2) => {
   const elementRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold }
-    );
-
-    const currentElement = elementRef.current;
-    if (currentElement) {
-      observer.observe(currentElement);
+    // Fallback: if IntersectionObserver is unavailable or errors, reveal content
+    if (typeof window !== 'undefined' && !('IntersectionObserver' in window)) {
+      setIsVisible(true);
+      return;
     }
 
-    return () => {
+    let observer: IntersectionObserver | undefined;
+    const currentElement = elementRef.current;
+
+    try {
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            // reveal once
+            if (currentElement && observer) observer.unobserve(currentElement);
+          }
+        },
+        { threshold, rootMargin: '0px 0px -10% 0px' }
+      );
+
       if (currentElement) {
+        observer.observe(currentElement);
+      }
+    } catch (_e) {
+      // Safety net
+      setIsVisible(true);
+    }
+
+    // Additional safety: ensure visibility after 1.5s even if observer never fires
+    const timeout = window.setTimeout(() => setIsVisible(true), 1500);
+
+    return () => {
+      if (currentElement && observer) {
         observer.unobserve(currentElement);
       }
+      window.clearTimeout(timeout);
     };
   }, [threshold]);
 
