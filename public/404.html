@@ -4,14 +4,15 @@
     <meta charset="utf-8" />
     <title>Redirecting…</title>
     <meta name="robots" content="noindex" />
-    <meta http-equiv="refresh" content="0; url=/domik/#/" />
+    <meta http-equiv="refresh" content="0; url=/#/" />
     <script>
       (function() {
-        var repo = '/domik/';
+        // Auto-detect if the site is served under /domik/ (GitHub Pages project) or at root (custom domain)
+        var repo = (location.pathname.indexOf('/domik/') === 0) ? '/domik/' : '/';
         var path = location.pathname;
         try {
           // Ensure we only strip the repo prefix
-          if (path.indexOf(repo) === 0) {
+          if (repo !== '/' && path.indexOf(repo) === 0) {
             path = path.substring(repo.length);
           } else {
             path = path.replace(/^\//, '');
