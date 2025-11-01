@@ -5,6 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { supabase } from "@/integrations/supabase/client";
 
 export const ContactForm = () => {
   const { toast } = useToast();
@@ -14,14 +15,34 @@ export const ContactForm = () => {
     phone: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Спасибо за заявку!",
-      description: "Мы свяжемся с вами в ближайшее время.",
-    });
-    setFormData({ name: "", phone: "", message: "" });
+    setIsSubmitting(true);
+
+    try {
+      const { error } = await supabase.functions.invoke('send-contact-email', {
+        body: formData,
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Спасибо за заявку!",
+        description: "Мы свяжемся с вами в ближайшее время.",
+      });
+      setFormData({ name: "", phone: "", message: "" });
+    } catch (error) {
+      console.error("Ошибка отправки заявки:", error);
+      toast({
+        title: "Ошибка отправки",
+        description: "Попробуйте позже или позвоните нам напрямую.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -69,8 +90,8 @@ export const ContactForm = () => {
                     rows={4}
                   />
                 </div>
-                <Button type="submit" size="lg" className="w-full">
-                  Отправить заявку
+                <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
+                  {isSubmitting ? "Отправка..." : "Отправить заявку"}
                 </Button>
               </form>
             </CardContent>
