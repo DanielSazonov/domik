@@ -17,13 +17,13 @@ export const useScrollAnimation = (threshold = 0.2) => {
     try {
       observer = new IntersectionObserver(
         ([entry]) => {
-          if (entry.isIntersecting) {
+          if (entry.isIntersecting && !isVisible) {
             setIsVisible(true);
             // reveal once
             if (currentElement && observer) observer.unobserve(currentElement);
           }
         },
-        { threshold, rootMargin: '0px 0px -10% 0px' }
+        { threshold, rootMargin: '0px 0px -50px 0px' }
       );
 
       if (currentElement) {
@@ -34,8 +34,8 @@ export const useScrollAnimation = (threshold = 0.2) => {
       setIsVisible(true);
     }
 
-    // Additional safety: ensure visibility after 1.5s even if observer never fires
-    const timeout = window.setTimeout(() => setIsVisible(true), 1500);
+    // Additional safety: ensure visibility after 2s even if observer never fires
+    const timeout = window.setTimeout(() => setIsVisible(true), 2000);
 
     return () => {
       if (currentElement && observer) {
@@ -43,7 +43,7 @@ export const useScrollAnimation = (threshold = 0.2) => {
       }
       window.clearTimeout(timeout);
     };
-  }, [threshold]);
+  }, [threshold, isVisible]);
 
   return { elementRef, isVisible };
 };
