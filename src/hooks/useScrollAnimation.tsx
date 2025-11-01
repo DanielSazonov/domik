@@ -17,13 +17,13 @@ export const useScrollAnimation = (threshold = 0.2) => {
     try {
       observer = new IntersectionObserver(
         ([entry]) => {
-          if (entry.isIntersecting && !isVisible) {
+          if (entry.isIntersecting) {
             setIsVisible(true);
             // reveal once
             if (currentElement && observer) observer.unobserve(currentElement);
           }
         },
-        { threshold, rootMargin: '0px 0px -50px 0px' }
+        { threshold, rootMargin: '0px 0px -100px 0px' }
       );
 
       if (currentElement) {
