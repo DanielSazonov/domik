@@ -1,13 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 
-export const useScrollAnimation = (threshold = 0.2) => {
+export const useScrollAnimation = (threshold = 0.2, delay = 200) => {
   const [isVisible, setIsVisible] = useState(false);
   const elementRef = useRef<HTMLDivElement>(null);
+  const hasAnimated = useRef(false);
 
   useEffect(() => {
     // Fallback: if IntersectionObserver is unavailable or errors, reveal content
     if (typeof window !== 'undefined' && !('IntersectionObserver' in window)) {
-      setIsVisible(true);
+      setTimeout(() => setIsVisible(true), delay);
       return;
     }
 
@@ -17,13 +18,16 @@ export const useScrollAnimation = (threshold = 0.2) => {
     try {
       observer = new IntersectionObserver(
         ([entry]) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
+          if (entry.isIntersecting && !hasAnimated.current) {
+            hasAnimated.current = true;
+            setTimeout(() => {
+              setIsVisible(true);
+            }, delay);
             // reveal once
             if (currentElement && observer) observer.unobserve(currentElement);
           }
         },
-        { threshold, rootMargin: '0px 0px -100px 0px' }
+        { threshold, rootMargin: '0px 0px -50px 0px' }
       );
 
       if (currentElement) {
@@ -31,19 +35,15 @@ export const useScrollAnimation = (threshold = 0.2) => {
       }
     } catch (_e) {
       // Safety net
-      setIsVisible(true);
+      setTimeout(() => setIsVisible(true), delay);
     }
-
-    // Additional safety: ensure visibility after 2s even if observer never fires
-    const timeout = window.setTimeout(() => setIsVisible(true), 2000);
 
     return () => {
       if (currentElement && observer) {
         observer.unobserve(currentElement);
       }
-      window.clearTimeout(timeout);
     };
-  }, [threshold, isVisible]);
+  }, [threshold, delay]);
 
   return { elementRef, isVisible };
 };
