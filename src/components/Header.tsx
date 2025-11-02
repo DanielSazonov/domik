@@ -60,6 +60,18 @@ export const Header = () => {
               <Phone className="h-4 w-4" />
               <span>8 (917) 208-74-71</span>
             </a>
+            <Button
+              className="hidden md:flex"
+              onClick={(e) => {
+                e.preventDefault();
+                const el = document.getElementById('contacts');
+                if (el) {
+                  el.scrollIntoView({ behavior: "smooth", block: "start" });
+                }
+              }}
+            >
+              Оставить заявку
+            </Button>
             <button
               className="md:hidden"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -85,6 +97,19 @@ export const Header = () => {
               <Phone className="h-4 w-4" />
               <span>8 (917) 208-74-71</span>
             </a>
+            <Button
+              className="w-full"
+              onClick={(e) => {
+                e.preventDefault();
+                const el = document.getElementById('contacts');
+                if (el) {
+                  el.scrollIntoView({ behavior: "smooth", block: "start" });
+                }
+                setIsMenuOpen(false);
+              }}
+            >
+              Оставить заявку
+            </Button>
           </div>
         )}
       </div>
