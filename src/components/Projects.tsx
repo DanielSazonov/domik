@@ -1,4 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
+import { ProgressiveImage } from "@/components/ProgressiveImage";
 import project1 from "@/assets/project1.jpg";
 import project2 from "@/assets/project2.jpg";
 import project3 from "@/assets/project3.jpg";
@@ -91,10 +92,10 @@ export const Projects = () => {
           {projects.map((project) => (
             <Card key={project.id} className="overflow-hidden hover:shadow-lg transition-shadow">
               <div className="aspect-[4/3] overflow-hidden">
-                <img
+                <ProgressiveImage
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover transition-transform hover:scale-105"
+                  className="w-full h-full transition-transform hover:scale-105"
                 />
               </div>
               <CardContent className="p-6">
