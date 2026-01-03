@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 interface ProgressiveImageProps {
   src: string;
@@ -6,39 +6,33 @@ interface ProgressiveImageProps {
   className?: string;
 }
 
-export const ProgressiveImage = ({ src, alt, className = "" }: ProgressiveImageProps) => {
+export const ProgressiveImage = ({
+  src,
+  alt,
+  className = "",
+}: ProgressiveImageProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [currentSrc, setCurrentSrc] = useState<string>("");
-
-  useEffect(() => {
-    // Create a low-quality placeholder
-    const img = new Image();
-    img.src = src;
-    
-    img.onload = () => {
-      setCurrentSrc(src);
-      setIsLoaded(true);
-    };
-  }, [src]);
 
   return (
     <div className={`relative overflow-hidden ${className}`}>
-      {/* Placeholder blur */}
-      <div 
+      {/* Placeholder */}
+      <div
         className={`absolute inset-0 bg-muted animate-pulse transition-opacity duration-500 ${
-          isLoaded ? 'opacity-0' : 'opacity-100'
+          isLoaded ? "opacity-0" : "opacity-100"
         }`}
       />
-      
-      {/* Actual image */}
+
       <img
-        src={currentSrc || src}
+        src={src}
         alt={alt}
-        className={`w-full h-full object-cover transition-all duration-500 ${
-          isLoaded ? 'opacity-100 blur-0' : 'opacity-0 blur-sm'
-        }`}
         loading="lazy"
+        decoding="async"
+        onLoad={() => setIsLoaded(true)}
+        className={`w-full h-full object-cover transition-[opacity,filter] duration-500 ${
+          isLoaded ? "opacity-100 blur-0" : "opacity-0 blur-sm"
+        }`}
       />
     </div>
   );
 };
+
