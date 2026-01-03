@@ -7,12 +7,13 @@ export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const menuItems = [
-    { label: "О компании", href: "#about" },
+    { label: "Категории", href: "#categories" },
     { label: "Проекты", href: "#projects" },
-    { label: "Построение дома", href: "#stages" },
-    { label: "Материалы", href: "#materials" },
-    { label: "Кредитование", href: "#mortgage" },
-    { label: "Отзывы", href: "#reviews" },
+    { label: "Сравнение", href: "#comparison" },
+    { label: "Калькулятор", href: "#calculator" },
+    { label: "Ипотека", href: "#mortgage" },
+    { label: "Этапы", href: "#stages" },
+    { label: "О нас", href: "#about" },
     { label: "Контакты", href: "#contacts" },
   ];
 
