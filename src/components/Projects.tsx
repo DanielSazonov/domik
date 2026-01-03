@@ -95,7 +95,7 @@ export const Projects = () => {
                 <ProgressiveImage
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full transition-transform hover:scale-105"
+                  className="w-full h-full transition-transform will-change-transform md:hover:scale-105"
                 />
               </div>
               <CardContent className="p-6">

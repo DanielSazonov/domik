@@ -14,7 +14,7 @@ export const Header = () => {
     { label: "Ипотека", href: "#mortgage" },
     { label: "Этапы", href: "#stages" },
     { label: "О нас", href: "#about" },
-    { label: "Контакты", href: "#contacts" },
+    { label: "Консультация", href: "#booking" },
   ];
 
   const handleAnchorClick = (
@@ -27,6 +27,17 @@ export const Header = () => {
       el.scrollIntoView({ behavior: "smooth", block: "start" });
     }
     // Keep HashRouter route at root to avoid 404
+    if (window.location.hash && window.location.hash !== "#/") {
+      window.location.hash = "#/";
+    }
+    setIsMenuOpen(false);
+  };
+
+  const scrollToBooking = () => {
+    const el = document.getElementById("booking");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
     if (window.location.hash && window.location.hash !== "#/") {
       window.location.hash = "#/";
     }
@@ -65,13 +76,10 @@ export const Header = () => {
               className="hidden md:flex"
               onClick={(e) => {
                 e.preventDefault();
-                const el = document.getElementById('contacts');
-                if (el) {
-                  el.scrollIntoView({ behavior: "smooth", block: "start" });
-                }
+                scrollToBooking();
               }}
             >
-              Оставить заявку
+              Записаться на консультацию
             </Button>
             <button
               className="md:hidden"
@@ -102,14 +110,10 @@ export const Header = () => {
               className="w-full"
               onClick={(e) => {
                 e.preventDefault();
-                const el = document.getElementById('contacts');
-                if (el) {
-                  el.scrollIntoView({ behavior: "smooth", block: "start" });
-                }
-                setIsMenuOpen(false);
+                scrollToBooking();
               }}
             >
-              Оставить заявку
+              Записаться на консультацию
             </Button>
           </div>
         )}
